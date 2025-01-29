@@ -1,0 +1,53 @@
+:root {
+    .theme_light {
+        /* for background */
+        --primary: #efecec;
+        /* for btn background */
+        --secondary: #f4f5f6;
+        --font: #1d1e1e;
+        /* for disabled btn font */
+        --disabled: #7C7C7C;
+    }
+
+    .theme_dark {
+        --primary: #3d3e3e;
+        --secondary: #232323;
+        --font: #efecec;
+        --disabled: #beb6b6;
+    }
+}
+
+body {
+    padding-top: 5rem;
+    background-color: var(--primary);
+    color: var(--font);
+}
+
+button {
+    border: 0;
+    background-color: var(--secondary);
+    color: var(--font);
+    width:auto;
+}
+
+button:disabled,
+span.disabled {
+    color: var(--disabled);
+}
+
+.span_btn {
+    padding: 0.5rem 8%;
+}
+
+.span_btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    cursor: pointer;
+}
+
+td {
+    text-align: center;
+}
