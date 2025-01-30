@@ -59,9 +59,10 @@ td {
     color: var(--disabled);
 }
 
-.nav-link:active,
+.nav-link.active,
 .nav-link:hover {
-    color: var(--font);
+    /* color: var(--font); */
+    color: white;
 }
 
 .history-div,
