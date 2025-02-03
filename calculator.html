@@ -10,6 +10,10 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <!-- FontAwesome 6.2.0 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/css/calculator.css">
 
 </head>
@@ -36,75 +40,201 @@
             </div>
             <hr>
             <!-- dropdown - 1.trigonometry 2.function -->
-            <div></div>
+            <div class="d-flex gap-4">
+                <div>
+                    <button type="button" class="btn btn-transparent btn-sm dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Trigonometry
+                    </button>
+                    <ul class="dropdown-menu">
+                        <table class="table align-middle">
+                            <tr>
+                                <td>
+                                    <button class="" id="">2nd</button>
+                                </td>
+                                <td>
+                                    <button class="" id="">sin</button>
+                                </td>
+                                <td>
+                                    <button class="" id="">cos</button>
+                                </td>
+                                <td>
+                                    <button class="" id="">tan</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="" id="">hyp</button>
+                                </td>
+                                <td>
+                                    <button class="" id="">sec</button>
+                                </td>
+                                <td>
+                                    <button class="" id="">csc</button>
+                                </td>
+                                <td>
+                                    <button class="" id="">cot</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </ul>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-transparent btn-sm dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Function
+                    </button>
+                    <ul class="dropdown-menu">
+                        <table class="table align-middle">
+                            <tr>
+                                <td>
+                                    <button class="" id="">|x|</button>
+                                </td>
+                                <td>
+                                    <button class="" id="">cos</button>
+                                </td>
+                                <td>
+                                    <button class="" id="">tan</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </ul>
+                </div>
+            </div>
             <!-- other buttons -->
             <div class="table-responsive">
-                <table class="table table-borderless align-middle">
+                <table class="table align-middle">
                     <!-- row 1 - 2nd, pi, e, C, remove-1 -->
                     <tr class="">
                         <td class="">
-                            <button class="" id="" onclick="">hi</button>
+                            <button class="" id="changeButtons" onclick="">2nd</button>
                         </td>
                         <td class="">
-                            <button class="" id="" onclick="">hi</button>
+                            <button class="" id="" onclick="">π</button>
                         </td>
                         <td class="">
-                            <button class="" id="" onclick="">hi</button>
+                            <button class="" id="" onclick="">e</button>
                         </td>
                         <td class="">
-                            <button class="" id="" onclick="">hi</button>
+                            <button class="" id="" onclick="">C</button>
                         </td>
                         <td class="">
-                            <button class="" id="" onclick="">hi</button>
+                            <button class="" id="" onclick="">⌫</button>
                         </td>
                     </tr>
                     <!-- row 2 - x2, 1/x, |x|, exp, mod -->
                     <tr class="">
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
+                        <td class="btnTd">
+                            <button class="firstBtnTd" id="" onclick="">x <sup>2</sup></button>
+                            <button class="secondBtnTd" id="" onclick="">x <sup>3</sup></button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">1/x</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">|x|</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">exp</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">mod</button>
+                        </td>
                     </tr>
                     <!-- row 3 - rootX, (, ), n!, / -->
                     <tr class="">
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
+                        <td class="btnTd">
+                            <button class="firstBtnTd" id="" onclick=""> &#8730;x</button>
+                            <button class="secondBtnTd" id="" onclick=""> &#8731;x</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">&#40;</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">&#41;</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">n!</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">&#247;</button>
+                        </td>
                     </tr>
                     <!-- row 4 - x^y, 7,8,9, * -->
                     <tr class="">
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
+                        <td class="btnTd">
+                            <button class="firstBtnTd" id="" onclick="">x <sup>y</sup></button>
+                            <button class="secondBtnTd" id="" onclick=""><sup>y</sup>&#8730; x</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">7</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">8</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">9</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">&times;</button>
+                        </td>
                     </tr>
                     <!-- row 5 - 10^x, 4,5,6, - -->
                     <tr class="">
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
+                        <td class="btnTd">
+                            <button class="firstBtnTd" id="" onclick="">10 <sup>x</sup></button>
+                            <button class="secondBtnTd" id="" onclick="">2 <sup>x</sup></button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">4</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">5</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">6</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">-</button>
+                        </td>
                     </tr>
                     <!-- row 6 - log, 1,2,3, + -->
                     <tr class="">
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
+                        <td class="btnTd">
+                            <button class="firstBtnTd" id="" onclick="">log</button>
+                            <button class="secondBtnTd" id="" onclick="">log <sub>y</sub>x</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">1</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">2</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">3</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">+</button>
+                        </td>
                     </tr>
                     <!-- row 7 - ln, +/-, 0, ., = -->
                     <tr class="">
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
+                        <td class="btnTd">
+                            <button class="firstBtnTd" id="" onclick="">ln</button>
+                            <button class="secondBtnTd" id="" onclick="">e <sup>x</sup></button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">+/-</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">0</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">.</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="">=</button>
+                        </td>
                     </tr>
                 </table>
             </div>
