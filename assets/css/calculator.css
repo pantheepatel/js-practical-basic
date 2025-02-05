@@ -25,11 +25,13 @@
 
     cursor: default;
     font-size: 1.1rem;
+    height: 100vh;
+    overflow: hidden;
 }
 
 
 body {
-    padding-top: 5rem;
+    /* padding-top: 5rem; */
     background-color: var(--primary);
     color: var(--font);
 }
@@ -48,7 +50,7 @@ span.disabled {
 }
 
 .span_btn {
-    padding: 0.5rem 8%;
+    padding: 0.5rem 2%;
 }
 
 .span_btn:hover {
@@ -99,4 +101,42 @@ td {
 
 .btnTd.swap .secondBtnTd {
     display: block;
+}
+
+.mainTable {
+    width: 100%;
+    /* background-color: pink; */
+}
+
+/* #spanDiv {
+    content: "";
+    height: 4rem;
+    background-color: var(--btn-hover);
+} */
+
+input[type="text"],
+input[type="text"]:focus {
+    background-color: transparent;
+    border: 0;
+    color: var(--font);
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.4rem;
+}
+
+#spanDiv {
+    background-color: var(--display-bg);
+    border: 0;
+    width: 100%;
+    height: 10rem;
+    align-content: end;
+    bottom: 0;
+}
+
+.dropdown-toggle {
+    color: var(--font);
+}
+
+.dropdown-menu.show {
+    background-color: var(--btn-hover);
 }
