@@ -24,7 +24,7 @@ function keepFocus() {
     const inputElement = document.getElementById("spanOutput").focus();
 
     // Keep the input focused even when clicking elsewhere
-    // inputElement.focus();
+    inputElement.focus();
 
     // Ensure input is focused whenever the page is loaded or focus is lost
     setInterval(() => {
@@ -48,9 +48,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let theme = localStorage.getItem('theme');
     console.log(`theme class is : ${theme}`)
     main.className = theme ? theme : 'theme_light';
-
     // keepFocus();
-
+    checkHistory();
+    checkMemory();
+    document.getElementById("trigonometry").addEventListener("click", trigo(event))
 })
 
 let inputField = document.getElementById("spanOutput");
@@ -106,6 +107,8 @@ document.getElementById("mainTable").addEventListener("click", function (event) 
             let returnAns = evaluate(currentValue);
             inputField.value = returnAns;
             isResultDisplayed = true;
+            checkHistory();
+            checkMemory();
         }
         else if (buttonValue === "clear") {
             inputField.value = "";
@@ -174,4 +177,17 @@ function singleValue(n, method) {
     } else {
         throw new Error("Invalid Math function");
     }
+}
+document.getElementById("nav-history").innerHTML = checkHistory();
+document.getElementById("nav-memory").innerHTML = checkMemory();
+document.getElementById("offcanvas-history").firstElementChild.innerHTML = checkHistory();
+document.getElementById("offcanvas-memory").firstElementChild.innerHTML = checkMemory();
+function checkHistory() {
+    return "There's no History yet."
+}
+function checkMemory() {
+    return "There's nothing saved in memory."
+}
+function trigo(event) {
+    console.log("this is trigo", event)
 }

@@ -19,13 +19,19 @@
 </head>
 
 <body class="" id="main">
-    <!-- <i class="fa fa-times" aria-hidden="true"></i> -->
-    <div class="row g-5 m-2">
-        <div class="col-12 col-md-9">
+    <div class="row m-auto">
+        <div class="col-12 col-lg-9">
+            <div class="d-flex justify-content-between d-block d-lg-none my-3">
+                <i class="fa fa-circle-half-stroke fa-lg" aria-hidden="true" onclick="changeTheme()"></i>
+                <i class="fa fa-clock-rotate-left fa-lg" aria-hidden="true" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvas-history" aria-controls="offcanvasBottom"></i>
+            </div>
+
             <!-- FIXME: add history and memory for small screens -->
             <!-- <i class="fa fa-clock" aria-hidden="true" class="d-block d-sm-none"></i> -->
             <!-- to show output -->
             <div class="" id="spanDiv">
+                <!-- FIXME: this is to show small text/like small history function, just for one expression -->
                 <!-- <input type="text" class="text-end" id="spanOutputHistory" value="0" disabled></input> -->
                 <input type="text" class="text-end" id="spanOutput" placeholder="0" disabled />
                 <!-- <span class="flex" id="spanOutput">0</span> -->
@@ -42,6 +48,10 @@
                 <span class="span_btn" onclick="">M+</span>
                 <span class="span_btn" onclick="">M-</span>
                 <span class="span_btn" onclick="">MS</span>
+                <span class="span_btn d-block d-lg-none disabled" onclick="" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvas-memory" aria-controls="offcanvasBottom">
+                    M <i class="fa-solid fa-xs fa-angle-down"></i>
+                </span>
             </div>
             <hr>
             <!-- dropdown - 1.trigonometry 2.function -->
@@ -52,11 +62,11 @@
                         Trigonometry
                     </button>
                     <ul class="dropdown-menu">
-                        <table class=" align-middle">
+                        <table class="align-middle" id="trigonometry">
                             <tr>
-                                <!-- <td>
+                                <td>
                                     <button class="" id="">2nd</button>
-                                </td> -->
+                                </td>
                                 <td>
                                     <button class="" id="" value="sin">sin</button>
                                 </td>
@@ -68,9 +78,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <!-- <td>
+                                <td>
                                     <button class="" id="" value="hyp">hyp</button>
-                                </td> -->
+                                </td>
                                 <td>
                                     <button class="" id="" value="sec">sec</button>
                                 </td>
@@ -169,7 +179,8 @@
                     <tr class="">
                         <td class="btnTd">
                             <button class="firstBtnTd" id="xToY" onclick="" value="xToY">x <sup>y</sup></button>
-                            <button class="secondBtnTd" id="yRootX" onclick="" value="yRootX"><sup>y</sup>&#8730; x</button>
+                            <button class="secondBtnTd" id="yRootX" onclick="" value="yRootX"><sup>y</sup>&#8730;
+                                x</button>
                         </td>
                         <td class="">
                             <button class="" id="" onclick="" value="7">7</button>
@@ -207,7 +218,8 @@
                     <tr class="">
                         <td class="btnTd">
                             <button class="firstBtnTd" id="logXbase10" onclick="" value="logXbase10">log</button>
-                            <button class="secondBtnTd" id="logXbaseY" onclick="" value="logXbaseY">log <sub>y</sub>x</button>
+                            <button class="secondBtnTd" id="logXbaseY" onclick="" value="logXbaseY">log
+                                <sub>y</sub>x</button>
                         </td>
                         <td class="">
                             <button class="" id="" onclick="" value="1">1</button>
@@ -244,7 +256,8 @@
                 </table>
             </div>
         </div>
-        <div class="col-12 col-md-3">
+        <!-- for large screen -->
+        <div class="d-none d-lg-block col-12 col-lg-3">
             <button onclick="changeTheme()">Change Theme</button>
             <ul class="nav nav-underline mb-2 showOnLarge" id="nav-tab" role="tablist">
                 <li class="nav-item">
@@ -257,23 +270,43 @@
                         type="button" role="tab" aria-controls="nav-memory" aria-selected="false">Memory</button>
                 </li>
             </ul>
+            <!-- FIXME: add delete icon for nav-tabs too -->
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade active show" id="nav-history" role="tabpanel"
                     aria-labelledby="nav-history-tab">
-                    <div class="history-div">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, mollitia!
-                    </div>
-                    <div class="history-div">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, mollitia!
-                    </div>
+                    <!-- <div class="history-div">Lorem ipsum dolor sit amet, consectetur</div> -->
                 </div>
                 <div class="tab-pane fade" id="nav-memory" role="tabpanel" aria-labelledby="nav-memory-tab">
-                    <div class="memory-div">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, mollitia!
+                    <!-- <div class="memory-div">Lorem ipsum dolor sit amet, consectetur</div> -->
+                </div>
+            </div>
+        </div>
+        <!-- for small screens -->
+        <div>
+            <!-- history -->
+            <div id="history">
+                <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvas-history"
+                    aria-labelledby="offcanvasBottomLabel">
+                    <div class="offcanvas-body">
+                        <!-- <div class="history-div">Lorem ipsum dolor sit amet, consectetur</div> -->
+                    </div>
+                    <div class="offcanvas-footer text-end">
+                        <i class="fa fa-trash m-2" id="deleteHistory"></i>
                     </div>
                 </div>
             </div>
-            <!-- history -->
-            <div id="history"></div>
             <!-- memory -->
-            <div id="memory"></div>
+            <div id="memory">
+                <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvas-memory"
+                    aria-labelledby="offcanvasBottomLabel">
+                    <div class="offcanvas-body">
+                        <!-- <div class="memory-div">Lorem ipsum dolor sit amet, consectetur</div> -->
+                    </div>
+                    <div class="offcanvas-footer text-end">
+                        <i class="fa fa-trash m-2" id="deleteMemory"></i>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- custom js -->
