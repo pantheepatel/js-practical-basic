@@ -53,40 +53,104 @@ document.addEventListener("DOMContentLoaded", function () {
 
 })
 
+let inputField = document.getElementById("spanOutput");
+// let inputFieldHistory = document.getElementById("spanOutputHistory");
+function getLastOperand(expression) {
+    // Split by operators (+, -, *, /) but keep negative numbers intact
+    console.log("in last operand ", expression)
+    // if (inputFieldHistory.value == 0) {
+    //     inputFieldHistory.value = expression;
+    // } else {
+    //     inputFieldHistory.value = expression;
+    // }
+    let operands = expression.split(/[\+\-\*\/]/);
+    // if (operands.includes(expression[-1])) {
+    //     inputField.value = 0;
+    // }
+    return operands.pop().trim(); // Get last number
+}
+let isResultDisplayed = false; // Flag to track if = was pressed
+// const pi = Math.PI;
 document.getElementById("mainTable").addEventListener("click", function (event) {
+
+    // FIXME: this is for removing previous output if = clicked before. 
+    // if current btn clicked is other value then replace or else if operand then append with 0.
+    if (isResultDisplayed) {
+        console.log(isResultDisplayed)
+        // if (isResultDisplayed) {
+        inputField.value = ""; // Clear previous result if a number is pressed
+        isResultDisplayed = false;
+        // }
+    }
+
     if (event.target.tagName === "BUTTON") {
         const buttonValue = event.target.value;
         // console.log(buttonValue);
-        const inputField = document.getElementById("spanOutput");
         let currentValue = inputField.value;
+
+        // this is to seperate input from operators
+        let lastOperand = getLastOperand(currentValue);
+        inputField.value = lastOperand;
+        // console.log(lastOperand)
+        // let num = parseInt(lastOperand, 10);
+        // if (isNaN(num) || num < 0) return "Error";
+
+        if (currentValue === "0") {
+            inputField.value = buttonValue;
+        } else {
+            inputField.value = currentValue + buttonValue;
+        }
+        let replaceArr = { "pi": Math.PI, "e": Math.E };
+        // operations on value after some operator
         if (buttonValue === "=") {
             let returnAns = evaluate(currentValue);
             inputField.value = returnAns;
+            isResultDisplayed = true;
         }
         else if (buttonValue === "clear") {
-            inputField.value = 0;
+            inputField.value = "";
         }
         else if (buttonValue === "backspace") {
             currentValue = currentValue.substr(0, currentValue.length - 1);
             inputField.value = currentValue;
         }
         else if (buttonValue === "fact") {
-            const factcurrentValue = fact(currentValue.substr(-1));
-            inputField.value = currentValue.substr(0, currentValue.length - 1) + factcurrentValue;
-        }else if(buttonValue==="mod"){
+            const factcurrentValue = fact(lastOperand);
+            inputField.value = currentValue.substr(0, currentValue.length - lastOperand.length) + factcurrentValue;
+        }
+        else if (buttonValue === "mod") {
             // let returnAns = evaluate(currentValue);
             inputField.value += "%";
         }
-
-
-        else if (currentValue === "0") {
-            inputField.value = buttonValue;
-        } else {
-            inputField.value = currentValue + buttonValue;
+        else if (buttonValue === "+-") {
+            lastOperand = (lastOperand < 0 ? lastOperand.slice(1) : "-" + lastOperand)
+            console.log(lastOperand, currentValue, inputField.value)
+            currentValue = updateCurrent(currentValue, lastOperand.length - 1);
+            inputField.value = currentValue + lastOperand;
         }
+        else if (buttonValue === "sqrtX") {
+            // inputField.value = 0
+            currentValue = updateCurrent(currentValue, lastOperand.length);
+            let ans = singleValue(lastOperand, "sqrt")
+            inputField.value = currentValue + ans;
+        }
+        else if (buttonValue in replaceArr) {
+            if (replaceArr[buttonValue] !== undefined) {
+                console.log("Replacing constant", currentValue, lastOperand);
+                currentValue = updateCurrent(currentValue, lastOperand.length);
+                inputField.value = currentValue.replace(/pi|e/g, lastOperand) + replaceArr[buttonValue];
+            } else {
+                inputField.value = currentValue + buttonValue;
+            }
+        }
+
     }
 })
 
+// this replace last oprand to current selected operation like for pi, e, 
+const updateCurrent = function (curr, op) {
+    return curr.substring(0, curr.length - op);
+}
 const evaluate = function (spanValue) {
     console.log("in eval with exp: ", spanValue)
     const ans = eval(spanValue);
@@ -100,4 +164,14 @@ function fact(n) {
         res *= i;
     }
     return res;
+}
+// console.log(singleValue(4, "sqrt"))
+// console.log(typeof eval(`Math.sqrt`))
+// this function is used when we want to perform only one value operation using math library
+function singleValue(n, method) {
+    if (typeof eval(`Math.${method}`) === "function") {
+        return eval(`Math.${method}(${n})`);
+    } else {
+        throw new Error("Invalid Math function");
+    }
 }

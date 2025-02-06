@@ -120,7 +120,6 @@ input[type="text"]:focus {
     border: 0;
     color: var(--font);
     width: 100%;
-    padding: 1rem;
     font-size: 1.4rem;
 }
 
@@ -131,6 +130,11 @@ input[type="text"]:focus {
     height: 10rem;
     align-content: end;
     bottom: 0;
+    padding: 1rem;
+}
+#spanOutputHistory{
+    font-size: 0.8rem;
+    color: var(--disabled);
 }
 
 .dropdown-toggle {

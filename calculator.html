@@ -26,7 +26,8 @@
             <!-- <i class="fa fa-clock" aria-hidden="true" class="d-block d-sm-none"></i> -->
             <!-- to show output -->
             <div class="" id="spanDiv">
-                <input type="text" class="text-end" id="spanOutput" value="0" />
+                <!-- <input type="text" class="text-end" id="spanOutputHistory" value="0" disabled></input> -->
+                <input type="text" class="text-end" id="spanOutput" placeholder="0" disabled />
                 <!-- <span class="flex" id="spanOutput">0</span> -->
             </div>
             <!-- deg and f-e -->
@@ -244,7 +245,7 @@
             </div>
         </div>
         <div class="col-12 col-md-3">
-            <button onclick="changeTheme()">click</button>
+            <button onclick="changeTheme()">Change Theme</button>
             <ul class="nav nav-underline mb-2 showOnLarge" id="nav-tab" role="tablist">
                 <li class="nav-item">
                     <button class="nav-link active" id="nav-history-tab" data-bs-toggle="tab"
