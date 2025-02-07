@@ -71,6 +71,9 @@ function getLastOperand(expression) {
     return operands.pop().trim(); // Get last number
 }
 let isResultDisplayed = false; // Flag to track if = was pressed
+let isInverse = false;
+let isHyp = false;
+let trigoElements = [];
 // const pi = Math.PI;
 document.getElementById("mainTable").addEventListener("click", function (event) {
 
@@ -84,7 +87,7 @@ document.getElementById("mainTable").addEventListener("click", function (event) 
         // }
     }
 
-    if (event.target.tagName === "BUTTON") {
+    else if (event.target.tagName === "BUTTON") {
         const buttonValue = event.target.value;
         // console.log(buttonValue);
         let currentValue = inputField.value;
@@ -102,6 +105,11 @@ document.getElementById("mainTable").addEventListener("click", function (event) 
             inputField.value = currentValue + buttonValue;
         }
         let replaceArr = { "pi": Math.PI, "e": Math.E };
+        let oneValue = ["sqrt", "cbrt", "log10", "log", "abs", "ceil", "floor"]
+        let twoValue = []
+        let pow = { "sqr": "2", "cube": "3", "inverse": "-1" }
+        let basePow = { "2ToX": "2", "10ToX": "10", "eToX": Math.E } //, "yRoot": "1/y"
+        // console.log(Math.abs(-2))
         // operations on value after some operator
         if (buttonValue === "=") {
             let returnAns = evaluate(currentValue);
@@ -131,10 +139,20 @@ document.getElementById("mainTable").addEventListener("click", function (event) 
             currentValue = updateCurrent(currentValue, lastOperand.length - 1);
             inputField.value = currentValue + lastOperand;
         }
-        else if (buttonValue === "sqrtX") {
-            // inputField.value = 0
+        else if (oneValue.includes(buttonValue)) {
             currentValue = updateCurrent(currentValue, lastOperand.length);
-            let ans = singleValue(lastOperand, "sqrt")
+            let ans = singleValue(lastOperand, buttonValue)
+            console.log("ans is : ", ans)
+            inputField.value = currentValue + ans;
+        }
+        else if (buttonValue in pow) {
+            currentValue = updateCurrent(currentValue, lastOperand.length);
+            let ans = mathPowValue(lastOperand, pow[buttonValue])
+            inputField.value = currentValue + ans;
+        }
+        else if (buttonValue in basePow) {
+            currentValue = updateCurrent(currentValue, lastOperand.length);
+            let ans = basePowValue(lastOperand, basePow[buttonValue])
             inputField.value = currentValue + ans;
         }
         else if (buttonValue in replaceArr) {
@@ -147,7 +165,67 @@ document.getElementById("mainTable").addEventListener("click", function (event) 
             }
         }
 
+        document.getElementById("trigonometry").addEventListener("click", function (event) {
+            let trigoNormal = ["sin", "cos", "tan", "sec", "csc", "cot"]
+            let trigoHyp = ["sinh", "cosh", "tanh", "sech", "csch", "coth"]
+            let trigoIns = ["sin-1", "cos-1", "tan-1", "sec-1", "csc-1", "cot-1"]
+            let trigoInsHyp = ["sin-1h", "cos-1h", "tan-1h", "sec-1h", "csc-1h", "cot-1h"]
+            let btnVal = event.target.value;
+            // let btnId = event.target.id;
+            // console.log("button id is : ", event)
+            // if (btnId === "trigonometry") {
+            trigoElements = Array.from(document.getElementsByClassName("trigoFun"))
+            // console.log("trigoElements: ", trigoElements)
+            if (btnVal === "changeButtonsIns") {
+                isInverse = !isInverse;
+                // console.log("isInverse: ", isInverse)
+            }
+            else if (btnVal === "changeButtonsHyp") {
+                isHyp = !isHyp;
+                // console.log("isHyp: ", isHyp)
+            }
+            // console.log("trigoElements: ", trigoElements)
+            // if (trigoNormal.includes(btnVal) || trigoHyp.includes(btnVal) || trigoIns.includes(btnVal) || trigoInsHyp.includes(btnVal)) {
+            // console.log("in trigo section", event.target.value)
+
+            if (isHyp && isInverse) {
+                trigoElements.forEach((ele, index) => {
+                    ele.value = trigoInsHyp[index];
+                    ele.innerHTML = ele.value;
+                })
+            } else if (isHyp) {
+                trigoElements.forEach((ele, index) => {
+                    ele.value = trigoHyp[index];
+                    ele.innerHTML = ele.value;
+                })
+            } else if (isInverse) {
+                trigoElements.forEach((ele, index) => {
+                    ele.value = trigoIns[index];
+                    ele.innerHTML = ele.value;
+                })
+            } else {
+                trigoElements.forEach((ele, index) => {
+                    ele.value = trigoNormal[index];
+                    ele.innerHTML = ele.value;
+                })
+            }
+            console.log("trigo selected btn : ", btnVal)
+
+            // currentValue = updateCurrent(currentValue, btnVal.length);
+            if (trigoNormal.includes(btnVal)) {
+                ans = eval(`Math.${btnVal}(${lastOperand})`)
+                console.log("this is ans: ", ans)
+            }
+            inputField.value = currentValue + ans;
+            // }
+            // }
+            // else {
+            //     console.error("button not present on trigo.")
+            // }
+            // }
+        })
     }
+
 })
 
 // this replace last oprand to current selected operation like for pi, e, 
@@ -155,9 +233,7 @@ const updateCurrent = function (curr, op) {
     return curr.substring(0, curr.length - op);
 }
 const evaluate = function (spanValue) {
-    console.log("in eval with exp: ", spanValue)
     const ans = eval(spanValue);
-    console.log("this is outpt: ", ans)
     return ans;
 }
 
@@ -171,9 +247,15 @@ function fact(n) {
 // console.log(singleValue(4, "sqrt"))
 // console.log(typeof eval(`Math.sqrt`))
 // this function is used when we want to perform only one value operation using math library
-function singleValue(n, method) {
+function mathPowValue(num, power) {
+    return Math.pow(num, power);
+}
+function basePowValue(power, base) {
+    return Math.pow(base, power);
+}
+function singleValue(num, method) {
     if (typeof eval(`Math.${method}`) === "function") {
-        return eval(`Math.${method}(${n})`);
+        return eval(`Math.${method}(${num})`);
     } else {
         throw new Error("Invalid Math function");
     }
