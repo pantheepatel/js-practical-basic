@@ -12,9 +12,9 @@ function changeTheme() {
     }
 
     try {
-        // let localTheme = localStorage.getItem('theme');
-        localStorage.setItem('theme', themeClass);
-        console.log("theme clas is : ", localStorage.getItem('theme'))
+        // let localTheme = sessionStorage.getItem('theme');
+        sessionStorage.setItem('theme', themeClass);
+        console.log("theme clas is : ", sessionStorage.getItem('theme'))
     } catch (err) {
         console.error(`error in storing theme: ${err}`)
     }
@@ -45,7 +45,7 @@ document.getElementById("changeButtons").addEventListener("click", changeButton)
 document.addEventListener("DOMContentLoaded", function () {
     let main = document.getElementById("main");
     // main.classList.remove();
-    let theme = localStorage.getItem('theme');
+    let theme = sessionStorage.getItem('theme');
     console.log(`theme class is : ${theme}`)
     main.className = theme ? theme : 'theme_light';
     // keepFocus();

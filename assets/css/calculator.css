@@ -31,9 +31,10 @@
 
 
 body {
-    padding-top: 5%;
+    padding: 1%;
     background-color: var(--primary);
     color: var(--font);
+    /* height: 100%; */
 }
 
 button {
@@ -128,10 +129,10 @@ input[type="text"]:focus {
     background-color: var(--display-bg);
     border: 0;
     width: 100%;
-    height: 10rem;
+    /* height: 10rem; */
     align-content: end;
-    bottom: 0;
-    padding: 1rem;
+    /* bottom: 0; */
+    padding: 1%;
 }
 
 #spanOutputHistory {
@@ -150,4 +151,8 @@ input[type="text"]:focus {
 .offcanvas {
     background-color: var(--display-bg);
     color: var(--font);
+}
+#mainContent{
+    height: 97vh; /* change this if found any other way*/
+    align-content: end;
 }
