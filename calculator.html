@@ -22,7 +22,7 @@
     <div class="row m-auto">
         <div class="col-12 col-lg-9" id="parentDiv">
             <div class="d-flex justify-content-between d-block d-lg-none my-3">
-                <i class="fa fa-circle-half-stroke fa-lg" aria-hidden="true" onclick="changeTheme()"></i>
+                <i class="fa fa-circle-half-stroke fa-lg" aria-hidden="true" id="changeThemeBtn"></i>
                 <i class="fa fa-clock-rotate-left fa-lg" aria-hidden="true" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvas-history" aria-controls="offcanvasBottom"></i>
             </div>
@@ -30,16 +30,18 @@
             <!-- FIXME: add history and memory for small screens -->
             <!-- <i class="fa fa-clock" aria-hidden="true" class="d-block d-sm-none"></i> -->
             <!-- to show output -->
-            <div class="" id="spanDiv">
+            <div class="" id="displayDiv">
                 <!-- FIXME: this is to show small text/like small history function, just for one expression -->
-                <!-- <input type="text" class="text-end" id="spanOutputHistory" value="0" disabled></input> -->
+                <input type="text" class="text-end" id="spanOutputHistory" value="0" disabled></input>
                 <input type="text" class="text-end" id="spanOutput" placeholder="0" disabled />
                 <!-- <span class="flex" id="spanOutput">0</span> -->
             </div>
             <!-- deg and f-e -->
-            <div class="d-flex justify-content-start gap-5 my-2">
-                <span class="span_btn" onclick="">DEG</span>
-                <span class="span_btn" onclick="">F-E</span>
+            <div class="d-flex justify-content-start gap-5 my-2" id="fixedDegree">
+                <!-- <span class="span_btn" onclick="">DEG</span> -->
+                <input type="checkbox" class="btn-check" id="degree" value="degree">
+                <label class="btn" for="degree" id="degreeLable">RAD</label>
+                <span class="span_btn" onclick="" id="fixed" value="fixed">F-E</span>
             </div>
             <!-- memory - mc mr m+ m- ms -->
             <div class="d-flex justify-content-between">
@@ -65,7 +67,10 @@
                         <table class="align-middle">
                             <tr>
                                 <td>
-                                    <button class="" id="" value="changeButtonsIns">2nd</button>
+                                    <!-- <button class="" id="" value="changeButtonsIns">2nd</button> -->
+                                    <input type="checkbox" class="btn-check" name="changeButtonsIns"
+                                        id="changeButtonsIns">
+                                    <label class="btn" for="changeButtonsIns">2nd</label>
                                 </td>
                                 <td>
                                     <button class="trigoFun" id="" value="sin">sin</button>
@@ -79,7 +84,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <button class="" id="" value="changeButtonsHyp">hyp</button>
+                                    <!-- <button class="" id="" value="changeButtonsHyp">hyp</button> -->
+                                    <input type="checkbox" class="btn-check" name="changeButtonsHyp"
+                                        id="changeButtonsHyp">
+                                    <label class="btn" for="changeButtonsHyp">Hyp</label>
                                 </td>
                                 <td>
                                     <button class="trigoFun" id="" value="sec">sec</button>
@@ -94,7 +102,7 @@
                         </table>
                     </ul>
                 </div>
-                <div>
+                <div id="mathFunc">
                     <button type="button" class="btn btn-transparent btn-sm dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Function
@@ -103,7 +111,7 @@
                         <table class="align-middle">
                             <tr>
                                 <td>
-                                    <button class="" id="" value="abs">|x|</button>
+                                    <button class="" id="" value="absX">|x|</button>
                                 </td>
                                 <td>
                                     <button class="" id="" value="ceil">⌈x⌉</button>
@@ -137,8 +145,7 @@
                             <button class="" id="backspace" onclick="" value="backspace">⌫</button>
                         </td>
                     </tr>
-                    <!-- TODO: exp, mod  row 2 - x2, 1/x, |x|, exp, mod -->
-                    <!-- FIXME: mod is not working bcz if -2 then give ans 2 but replace only 2, same for abs(2)=2 -->
+                    <!-- row 2 - x2, 1/x, |x|, exp, mod -->
                     <tr class="">
                         <td class="btnTd">
                             <button class="firstBtnTd" id="sqrX" onclick="" value="sqr">x <sup>2</sup></button>
@@ -154,7 +161,7 @@
                             <button class="" id="exponent" onclick="" value="exponent">exp</button>
                         </td>
                         <td class="">
-                            <button class="" id="mod" onclick="" value="mod">mod</button>
+                            <button class="" id="mod" onclick="" value="%">mod</button>
                         </td>
                     </tr>
                     <!-- TODO: brackets row 3 - rootX, (, ), n!, / -->
@@ -164,10 +171,10 @@
                             <button class="secondBtnTd" id="curtX" onclick="" value="cbrt"> &#8731;x</button>
                         </td>
                         <td class="">
-                            <button class="" id="" onclick="" value="">&#40;</button>
+                            <button class="" id="" onclick="" value="(">&#40;</button>
                         </td>
                         <td class="">
-                            <button class="" id="" onclick="" value="">&#41;</button>
+                            <button class="" id="" onclick="" value=")">&#41;</button>
                         </td>
                         <td class="">
                             <button class="" id="fact" onclick="" value="fact">n!</button>
@@ -176,7 +183,7 @@
                             <button class="" id="divide" onclick="" value="/">&#247;</button>
                         </td>
                     </tr>
-                    <!-- TODO: x^y row 4 - x^y, 7,8,9, * -->
+                    <!-- row 4 - x^y, 7,8,9, * -->
                     <tr class="">
                         <td class="btnTd">
                             <button class="firstBtnTd" id="xToY" onclick="" value="xToY">x <sup>y</sup></button>
@@ -215,7 +222,7 @@
                             <button class="" id="" onclick="" value="-">-</button>
                         </td>
                     </tr>
-                    <!-- TODO: log x base Y row 6 - log, 1,2,3, + -->
+                    <!-- row 6 - log, 1,2,3, + -->
                     <tr class="">
                         <td class="btnTd">
                             <button class="firstBtnTd" id="logXbase10" onclick="" value="log10">log</button>
@@ -242,16 +249,16 @@
                             <button class="secondBtnTd" id="eToX" onclick="" value="eToX">e <sup>x</sup></button>
                         </td>
                         <td class="">
-                            <button class="" id="" onclick="" value="+-">+/-</button>
+                            <button class="" id="" onclick="" value="toggleSign">+/-</button>
                         </td>
                         <td class="">
-                            <button class="" id="" onclick="" value="0">0</button>
+                            <button class="" id="zero" onclick="" value="0">0</button>
                         </td>
                         <td class="">
-                            <button class="" id="" onclick="" value=".">.</button>
+                            <button class="" id="point" onclick="" value=".">.</button>
                         </td>
                         <td class="">
-                            <button class="" id="" onclick="" value="=">=</button>
+                            <button class="" id="" onclick="" value="eq">=</button>
                         </td>
                     </tr>
                 </table>
@@ -259,7 +266,7 @@
         </div>
         <!-- for large screen -->
         <div class="d-none d-lg-block col-12 col-lg-3">
-            <button onclick="changeTheme()">Change Theme</button>
+            <button class="themeBtn" id="changeThemeBtnLg">Change Theme</button>
             <ul class="nav nav-underline mb-2 showOnLarge" id="nav-tab" role="tablist">
                 <li class="nav-item">
                     <button class="nav-link active" id="nav-history-tab" data-bs-toggle="tab"
@@ -311,7 +318,13 @@
         </div>
     </div>
     <!-- custom js -->
-    <script src="assets/js/calculator.js"></script>
+    <script type="module" src="assets/js/app.js"></script>
+    <!-- <script type="module" src="assets/js/calculator.js"></script> -->
+    <!-- <script type="module" src="assets/js/storage.js"></script>
+    <script type="module" src="assets/js/error.js"></script>
+    <script type="module" src="assets/js/event.js"></script>
+    <script type="module" src="assets/js/operations.js"></script> -->
+
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
