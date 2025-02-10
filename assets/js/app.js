@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 calculator.basePowValue(basePow[buttonValue]);
             }
             else {
-                console.log(buttonValue)
+                // console.log(buttonValue)
                 calculator.appendValue(buttonValue);
             }
         }
