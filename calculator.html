@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Calculator</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <!-- FontAwesome 6.2.0 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/calculator.css">
+
+</head>
+
+<body class="" id="main">
+    <div class="row m-auto">
+        <div class="col-12 col-lg-9" id="parentDiv">
+            <div class="d-flex justify-content-between d-block d-lg-none my-3">
+                <i class="fa fa-circle-half-stroke fa-lg" aria-hidden="true" id="changeThemeBtn"></i>
+                <i class="fa fa-clock-rotate-left fa-lg" aria-hidden="true" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvas-history" aria-controls="offcanvasBottom"></i>
+            </div>
+
+            <!-- FIXME: add history and memory for small screens -->
+            <!-- <i class="fa fa-clock" aria-hidden="true" class="d-block d-sm-none"></i> -->
+            <!-- to show output -->
+            <div class="" id="displayDiv">
+                <!-- FIXME: this is to show small text/like small history function, just for one expression -->
+                <input type="text" class="text-end" id="spanOutputHistory" value="0" disabled></input>
+                <input type="text" class="text-end" id="spanOutput" placeholder="0" disabled />
+                <!-- <span class="flex" id="spanOutput">0</span> -->
+            </div>
+            <!-- deg and f-e -->
+            <div class="d-flex justify-content-start gap-5 my-2" id="fixedDegree">
+                <!-- <span class="span_btn" onclick="">DEG</span> -->
+                <input type="checkbox" class="btn-check" id="degree" value="degree">
+                <label class="btn" for="degree" id="degreeLable">RAD</label>
+                <span class="span_btn" onclick="" id="fixed" value="fixed">F-E</span>
+            </div>
+            <!-- memory - mc mr m+ m- ms -->
+            <div class="d-flex justify-content-between">
+                <span class="span_btn disabled" onclick="">MC</span>
+                <span class="span_btn disabled" onclick="">MR</span>
+                <span class="span_btn" onclick="">M+</span>
+                <span class="span_btn" onclick="">M-</span>
+                <span class="span_btn" onclick="">MS</span>
+                <span class="span_btn d-block d-lg-none disabled" onclick="" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvas-memory" aria-controls="offcanvasBottom">
+                    M <i class="fa-solid fa-xs fa-angle-down"></i>
+                </span>
+            </div>
+            <hr>
+            <!-- dropdown - 1.trigonometry 2.function -->
+            <div class="d-flex gap-4" id="mainDrop">
+                <div id="trigonometry">
+                    <button type="button" class="btn btn-transparent btn-sm dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false" data-bs-auto-close="outside">
+                        Trigonometry
+                    </button>
+                    <ul class="dropdown-menu">
+                        <table class="align-middle">
+                            <tr>
+                                <td>
+                                    <!-- <button class="" id="" value="changeButtonsIns">2nd</button> -->
+                                    <input type="checkbox" class="btn-check" name="changeButtonsIns"
+                                        id="changeButtonsIns">
+                                    <label class="btn" for="changeButtonsIns">2nd</label>
+                                </td>
+                                <td>
+                                    <button class="trigoFun" id="" value="sin">sin</button>
+                                </td>
+                                <td>
+                                    <button class="trigoFun" id="" value="cos">cos</button>
+                                </td>
+                                <td>
+                                    <button class="trigoFun" id="" value="tan">tan</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <!-- <button class="" id="" value="changeButtonsHyp">hyp</button> -->
+                                    <input type="checkbox" class="btn-check" name="changeButtonsHyp"
+                                        id="changeButtonsHyp">
+                                    <label class="btn" for="changeButtonsHyp">Hyp</label>
+                                </td>
+                                <td>
+                                    <button class="trigoFun" id="" value="sec">sec</button>
+                                </td>
+                                <td>
+                                    <button class="trigoFun" id="" value="csc">csc</button>
+                                </td>
+                                <td>
+                                    <button class="trigoFun" id="" value="cot">cot</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </ul>
+                </div>
+                <div id="mathFunc">
+                    <button type="button" class="btn btn-transparent btn-sm dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Function
+                    </button>
+                    <ul class="dropdown-menu">
+                        <table class="align-middle">
+                            <tr>
+                                <td>
+                                    <button class="" id="" value="absX">|x|</button>
+                                </td>
+                                <td>
+                                    <button class="" id="" value="ceil">⌈x⌉</button>
+                                </td>
+                                <td>
+                                    <button class="" id="" value="floor">⌊x⌋</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </ul>
+                </div>
+            </div>
+            <!-- other buttons -->
+            <div class="">
+                <table class="align-middle mainTable" id="mainTable">
+                    <!-- row 1 - 2nd, pi, e, C, remove-1 -->
+                    <tr class="">
+                        <td class="">
+                            <button class="" id="changeButtons" onclick="">2nd</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="pi" onclick="" value="pi">π</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="e" onclick="" value="e">e</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="clear" onclick="" value="clear">C</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="backspace" onclick="" value="backspace">⌫</button>
+                        </td>
+                    </tr>
+                    <!-- row 2 - x2, 1/x, |x|, exp, mod -->
+                    <tr class="">
+                        <td class="btnTd">
+                            <button class="firstBtnTd" id="sqrX" onclick="" value="sqr">x <sup>2</sup></button>
+                            <button class="secondBtnTd" id="cubeX" onclick="" value="cube">x <sup>3</sup></button>
+                        </td>
+                        <td class="">
+                            <button class="" id="inversion" onclick="" value="inverse">1/x</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="absX" onclick="" value="absX">|x|</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="exponent" onclick="" value="exponent">exp</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="mod" onclick="" value="%">mod</button>
+                        </td>
+                    </tr>
+                    <!-- TODO: brackets row 3 - rootX, (, ), n!, / -->
+                    <tr class="">
+                        <td class="btnTd">
+                            <button class="firstBtnTd" id="sqrtX" onclick="" value="sqrt"> &#8730;x</button>
+                            <button class="secondBtnTd" id="curtX" onclick="" value="cbrt"> &#8731;x</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value="(">&#40;</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value=")">&#41;</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="fact" onclick="" value="fact">n!</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="divide" onclick="" value="/">&#247;</button>
+                        </td>
+                    </tr>
+                    <!-- row 4 - x^y, 7,8,9, * -->
+                    <tr class="">
+                        <td class="btnTd">
+                            <button class="firstBtnTd" id="xToY" onclick="" value="xToY">x <sup>y</sup></button>
+                            <button class="secondBtnTd" id="yRootX" onclick="" value="yRootX"><sup>y</sup>&#8730;
+                                x</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value="7">7</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value="8">8</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value="9">9</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value="*">&times;</button>
+                        </td>
+                    </tr>
+                    <!-- row 5 - 10^x, 4,5,6, - -->
+                    <tr class="">
+                        <td class="btnTd">
+                            <button class="firstBtnTd" id="10ToX" onclick="" value="10ToX">10 <sup>x</sup></button>
+                            <button class="secondBtnTd" id="2ToX" onclick="" value="2ToX">2 <sup>x</sup></button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value="4">4</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value="5">5</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value="6">6</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value="-">-</button>
+                        </td>
+                    </tr>
+                    <!-- row 6 - log, 1,2,3, + -->
+                    <tr class="">
+                        <td class="btnTd">
+                            <button class="firstBtnTd" id="logXbase10" onclick="" value="log10">log</button>
+                            <button class="secondBtnTd" id="logXbaseY" onclick="" value="logXbaseY">log
+                                <sub>y</sub>x</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value="1">1</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value="2">2</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value="3">3</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value="+">+</button>
+                        </td>
+                    </tr>
+                    <!-- row 7 - ln, +/-, 0, ., = -->
+                    <tr class="">
+                        <td class="btnTd">
+                            <button class="firstBtnTd" id="naturalLog" onclick="" value="log">ln</button>
+                            <button class="secondBtnTd" id="eToX" onclick="" value="eToX">e <sup>x</sup></button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value="toggleSign">+/-</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="zero" onclick="" value="0">0</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="point" onclick="" value=".">.</button>
+                        </td>
+                        <td class="">
+                            <button class="" id="" onclick="" value="eq">=</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- for large screen -->
+        <div class="d-none d-lg-block col-12 col-lg-3">
+            <button class="themeBtn" id="changeThemeBtnLg">Change Theme</button>
+            <ul class="nav nav-underline mb-2 showOnLarge" id="nav-tab" role="tablist">
+                <li class="nav-item">
+                    <button class="nav-link active" id="nav-history-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-history" type="button" role="tab" aria-controls="nav-history"
+                        aria-selected="true">History</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="nav-memory-tab" data-bs-toggle="tab" data-bs-target="#nav-memory"
+                        type="button" role="tab" aria-controls="nav-memory" aria-selected="false">Memory</button>
+                </li>
+            </ul>
+            <!-- FIXME: add delete icon for nav-tabs too -->
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade active show" id="nav-history" role="tabpanel"
+                    aria-labelledby="nav-history-tab">
+                    <!-- <div class="history-div">Lorem ipsum dolor sit amet, consectetur</div> -->
+                </div>
+                <div class="tab-pane fade" id="nav-memory" role="tabpanel" aria-labelledby="nav-memory-tab">
+                    <!-- <div class="memory-div">Lorem ipsum dolor sit amet, consectetur</div> -->
+                </div>
+            </div>
+        </div>
+        <!-- for small screens -->
+        <div>
+            <!-- history -->
+            <div id="history">
+                <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvas-history"
+                    aria-labelledby="offcanvasBottomLabel">
+                    <div class="offcanvas-body">
+                        <!-- <div class="history-div">Lorem ipsum dolor sit amet, consectetur</div> -->
+                    </div>
+                    <div class="offcanvas-footer text-end">
+                        <i class="fa fa-trash m-2" id="deleteHistory"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- memory -->
+            <div id="memory">
+                <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvas-memory"
+                    aria-labelledby="offcanvasBottomLabel">
+                    <div class="offcanvas-body">
+                        <!-- <div class="memory-div">Lorem ipsum dolor sit amet, consectetur</div> -->
+                    </div>
+                    <div class="offcanvas-footer text-end">
+                        <i class="fa fa-trash m-2" id="deleteMemory"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- custom js -->
+    <script type="module" src="assets/js/app.js"></script>
+    <!-- <script type="module" src="assets/js/calculator.js"></script> -->
+    <!-- <script type="module" src="assets/js/storage.js"></script>
+    <script type="module" src="assets/js/error.js"></script>
+    <script type="module" src="assets/js/event.js"></script>
+    <script type="module" src="assets/js/operations.js"></script> -->
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

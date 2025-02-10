@@ -1,0 +1,170 @@
+:root {
+    .theme_light {
+        --primary: #f5f5f5;
+        --secondary: #ffffff;
+        --font: #333333;
+        --disabled: #7C7C7C;
+        --accent: #ff9800;
+        --btn-hover: #e0e0e0;
+        --display-bg: #ffffff;
+        --display-font: #000000;
+        --border: #cccccc;
+    }
+
+    .theme_dark {
+        --primary: #2c3e50;
+        --secondary: #34495e;
+        --font: #ecf0f1;
+        --disabled: #beb6b6;
+        --accent: #e67e22;
+        --btn-hover: #2c3e50;
+        --display-bg: #34495e;
+        --display-font: #ecf0f1;
+        --border: #7f8c8d;
+    }
+
+    cursor: default;
+    /* font-size: 1.1rem; */
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+body {
+    padding: 1%;
+    background-color: var(--primary);
+    color: var(--font);
+    /* height: 100%; */
+}
+
+#parentDiv {
+    display: flex;
+    flex-direction: column;
+    height: 97vh;
+}
+
+#displayDiv {
+    background-color: var(--display-bg);
+    border: 0;
+    width: 100%;
+    height: 8rem;
+    align-content: end;
+    padding: 1%;
+}
+
+#spanOutputHistory {
+    font-size: 0.8rem;
+    color: var(--disabled);
+}
+
+.mainTable {
+    width: 100%;
+    border-collapse: separate;
+    /* border-spacing: 1rem; */
+    /* flex-grow: 1; */
+    /* background-color: pink; */
+}
+
+td>button,
+.themeBtn {
+    border: 0;
+    background-color: var(--secondary);
+    color: var(--font);
+    width: 100%;
+    height: 3rem;
+    border-radius: 0.4rem;
+}
+
+.btn-check{
+    color: var(--font);
+}
+
+button:disabled,
+span.disabled {
+    color: var(--disabled);
+}
+
+.span_btn {
+    padding: 0.5rem 2%;
+}
+
+.span_btn:hover,
+td>button:hover,
+.themeBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    cursor: pointer;
+}
+
+td {
+    text-align: center;
+    width: 20%;
+}
+
+.nav-link {
+    color: var(--disabled);
+}
+
+.history-div,
+.memory-div {
+    padding: 0.7rem;
+    border-radius: 0.4rem;
+    color: var(--font);
+}
+
+.history-div:hover,
+.memory-div:hover {
+    outline: 0.1rem solid var(--border);
+    background-color: var(--secondary);
+
+}
+
+.nav-underline .nav-link.active,
+.nav-underline .show>.nav-link,
+.nav-link:hover {
+    color: var(--font);
+    /* border-bottom: none; */
+}
+
+.btnTd .secondBtnTd {
+    display: none;
+}
+
+.btnTd.swap .firstBtnTd {
+    display: none;
+}
+
+.btnTd.swap .secondBtnTd {
+    display: block;
+}
+
+/* #displayDiv {
+    content: "";
+    height: 4rem;
+    background-color: var(--btn-hover);
+} */
+
+input[type="text"],
+input[type="text"]:focus {
+    background-color: transparent;
+    border: 0;
+    color: var(--font);
+    width: 100%;
+    font-size: 1.4rem;
+}
+
+.dropdown-toggle {
+    color: var(--font);
+}
+
+.dropdown-menu.show {
+    background-color: var(--btn-hover);
+}
+
+.offcanvas {
+    background-color: var(--display-bg);
+    color: var(--font);
+}
