@@ -24,7 +24,6 @@
     }
 
     cursor: default;
-    /* font-size: 1.1rem; */
     height: 100vh;
     overflow: hidden;
 }
@@ -34,7 +33,6 @@ body {
     padding: 1%;
     background-color: var(--primary);
     color: var(--font);
-    /* height: 100%; */
 }
 
 #parentDiv {
@@ -60,9 +58,6 @@ body {
 .mainTable {
     width: 100%;
     border-collapse: separate;
-    /* border-spacing: 1rem; */
-    /* flex-grow: 1; */
-    /* background-color: pink; */
 }
 
 td>button,
@@ -126,7 +121,6 @@ td {
 .nav-underline .show>.nav-link,
 .nav-link:hover {
     color: var(--font);
-    /* border-bottom: none; */
 }
 
 .btnTd .secondBtnTd {
@@ -140,12 +134,6 @@ td {
 .btnTd.swap .secondBtnTd {
     display: block;
 }
-
-/* #displayDiv {
-    content: "";
-    height: 4rem;
-    background-color: var(--btn-hover);
-} */
 
 input[type="text"],
 input[type="text"]:focus {
