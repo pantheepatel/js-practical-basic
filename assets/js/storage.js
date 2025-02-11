@@ -10,7 +10,6 @@ export function changeTheme() {
     }
 
     try {
-        // let localTheme = localStorage.getItem('theme');
         localStorage.setItem('theme', themeClass);
         console.log("theme clas is : ", localStorage.getItem('theme'))
     } catch (err) {

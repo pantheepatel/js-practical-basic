@@ -13,23 +13,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const displayExp = document.getElementById("spanOutputHistory");
     const calculator = new Calculator(displayEle, displayExp);
 
-
     // all event listners that are importtant
     document.getElementById("changeThemeBtn").addEventListener("click", changeTheme);
     document.getElementById("changeThemeBtnLg").addEventListener("click", changeTheme);
-    document.getElementById("changeButtons").addEventListener("click", changeButton)
-    // document.getElementById("fixed").addEventListener("click", calculator.fixed)
+    document.getElementById("changeButtons").addEventListener("click", changeButton);
 
     document.getElementById("mainTable").addEventListener("click", function (event) {
         let constantsArr = { "pi": Math.PI, "e": Math.E };
         let oneValue = ["sqrt", "cbrt", "log10", "log", "abs", "ceil", "floor"]
-        let twoValue = []
         let pow = { "sqr": "2", "cube": "3", "inverse": "-1" }
-        let basePow = { "2ToX": "2", "10ToX": "10", "eToX": Math.E } //, "yRoot": "1/y"
-
+        let basePow = { "2ToX": "2", "10ToX": "10", "eToX": Math.E }
         if (event.target.tagName === "BUTTON") {
             const buttonValue = event.target.value;
-            // console.log(buttonValue)
             if (buttonValue === "clear") {
                 calculator.clearDisplay();
             }
@@ -74,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 calculator.basePowValue(basePow[buttonValue]);
             }
             else {
-                // console.log(buttonValue)
                 calculator.appendValue(buttonValue);
             }
         }
@@ -83,7 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let degShow = false;
     document.getElementById("fixedDegree").addEventListener("click", function (event) {
         let buttonValue = event.target.id;
-        // console.log(buttonValue)
         let deg = document.getElementById("degree");
         let degLable = document.getElementById("degreeLable");
         degLable.innerText = "RAD"
@@ -95,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
             degShow = true;
         }
     })
+
     document.getElementById("mathFunc").addEventListener("click", function (event) {
         let func = ["ceil", "floor"]
         if (event.target.tagName === "BUTTON") {
@@ -106,6 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     })
+    
     document.getElementById("trigonometry").addEventListener("click", function (event) {
         let trigoNormal = ["sin", "cos", "tan", "sec", "csc", "cot"]
         let trigoHyp = ["sinh", "cosh", "tanh", "sech", "csch", "coth"]
@@ -125,13 +120,10 @@ document.addEventListener("DOMContentLoaded", () => {
             { "csc-1": "asin" }, { "sec-1": "acos" }, { "cot-1": "atan" },
             { "csc-1h": "asinh" }, { "sec-1h": "acosh" }, { "cot-1h": "atanh" }
         ]
-        // for below array sin-cosec, cos-sec, tan-cot
-        // let insTrigo = ["sin", "cos", "tan", "sinh", "cosh", "tanh", "sin-1", "cos-1", "tan-1", "sin-1h", "cos-1h", "tan-1h"]
 
         let isInverse = document.getElementById("changeButtonsIns").checked;
         let isHyp = document.getElementById("changeButtonsHyp").checked;
         const buttonValue = event.target.value;
-        // console.log(isHyp, isInverse)
         let trigoElements = Array.from(document.getElementsByClassName("trigoFun"))
         if (isHyp && isInverse) {
             trigoElements.forEach((ele, index) => {
@@ -154,7 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 ele.innerHTML = ele.value;
             })
         }
-        // console.log("trigo selected btn : ", buttonValue)
         let foundTrigo = basicTrigo.find(obj => Object.keys(obj)[0] === buttonValue);
         let foundInsTrigo = insTrigo.find(obj => Object.keys(obj)[0] === buttonValue);
         if (foundTrigo) {
@@ -165,5 +156,4 @@ document.addEventListener("DOMContentLoaded", () => {
             calculator.basicTrigoFunc(method, true, degShow)
         }
     });
-
 });

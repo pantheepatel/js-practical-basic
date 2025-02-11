@@ -1,9 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // TODO: implement these features
-    // checkHistory();
-    // checkMemory();
-})
-
 // change buttons normal - when clicking 2nd btn
 export const changeButton = function () {
     console.log("in chnage buttons")
@@ -47,7 +41,6 @@ class Calculator {
         }
         if (this.displayCurrVal === "" && !this.currentValue) {
             console.log("blank")
-            // document.getElementById("zero").setAttribute('disabled');
             if (operatorsBasic.includes(value)) {
                 this.displayCurrVal = ""
                 this.updateTopDisplay(0, value)
@@ -57,14 +50,6 @@ class Calculator {
             } else if (value === "(") {
                 this.updateTopDisplay("(", "");
             }
-            // else if (value === "(") {
-            //     this.updateTopDisplay("(0", "")
-            // }
-            // else if (this.isConstant) {
-            //     console.log("direct constant")
-            //     this.displayCurrVal = value;
-            //     this.updateDisplay()
-            // }
         }
         else if (this.isAns && this.displayCurrVal) {
             console.log("ans")
@@ -104,13 +89,11 @@ class Calculator {
 
     }
     updateTopDisplay(value = "", operator = "", ans = false, replace = false) {
-        // console.log("in update top display: ", this.currentValue.toString())
         if (this.currentValue.length && !replace) {
             this.currentValue = this.currentValue + value + operator
         } else {
             this.currentValue = value + operator
         }
-        // console.log("now: ",this.currentValue)
         this.displayExp.value = this.currentValue;
 
         if (!ans) {
@@ -130,19 +113,15 @@ class Calculator {
         this.isConstant = false;
     }
     deleteLast() {
-        // this.currentValue = this.currentValue.slice(0, -1);
         this.displayCurrVal = this.displayCurrVal.slice(0, - 1);
         this.updateDisplay();
     }
     replaceLast(length, operator) {
         let updateStr = this.currentValue.slice(0, length);
-        // this.displayCurrVal = this.currentValue.slice(0, length);
         this.updateTopDisplay(updateStr, operator, false, true);
     }
     updateDisplay() {
         this.display.value = this.displayCurrVal;
-        // this.displayExp.value = this.currentValue;
-        // console.log(this.displayCurrVal, this.currentValue)
     }
     basicOperations() {
         try {
@@ -158,14 +137,7 @@ class Calculator {
                 if (this.displayCurrVal) {
                     // Complete the expression
                     if (expression.includes('Math.pow')) {
-                        // if (expression.includes('* Math.pow(10,')) {
-                        //     // EXP operation
-                        //     expression = expression + this.displayCurrVal + ')';
-                        // } 
-                        // else {
-                        // yRootX operation
                         expression = expression + this.displayCurrVal + ')';
-                        // }
                     } else if (expression.includes('Math.log')) {
                         expression = expression + this.displayCurrVal + ')';
                     }
@@ -256,20 +228,16 @@ Calculator.prototype.toggleSign = function () {
     if (this.displayCurrVal) {
         this.displayCurrVal = (-parseFloat(this.displayCurrVal)).toString();
         console.log("replace dis: ", this.displayCurrVal.length - 1)
-        // this.replaceLast(-parseFloat(this.displayCurrVal.length));
-        // this.currentValue += this.displayCurrVal
         this.updateDisplay();
     }
 };
 
 Calculator.prototype.addConstants = function (value) {
-    // console.log(value)
     if (value) {
         this.displayCurrVal = value;
         if (operatorsBasic.includes(this.currentValue.toString().at(-1))) { this.currentValue += this.displayCurrVal; }
         else { this.currentValue = this.displayCurrVal }
         this.isConstant = true;
-
         this.updateDisplay();
     }
 }
@@ -277,10 +245,10 @@ Calculator.prototype.addConstants = function (value) {
 Calculator.prototype.absolute = function () {
     if (this.displayCurrVal !== "") {
         this.displayCurrVal = Math.abs(this.displayCurrVal);
-        // this.ans = true;
         this.updateDisplay();
     }
 }
+
 // root x, log, ln
 Calculator.prototype.factorial = function () {
     let n = this.displayCurrVal ? this.displayCurrVal : 0;
@@ -317,7 +285,6 @@ Calculator.prototype.yRootX = function () {
         this.updateTopDisplay();
     }
 };
-
 
 Calculator.prototype.logXbaseY = function () {
     if (this.displayCurrVal) {
@@ -365,12 +332,10 @@ Calculator.prototype.basePowValue = function (base) {
 
 Calculator.prototype.basicTrigoFunc = function (method, isIns = false, degree = false) {
     let disValue = this.displayCurrVal;
-    // console.log(value, method)
     if (disValue === "") return;
     let value = degree ? (disValue * Math.PI) / 180 : disValue;
     if (!isIns) { this.displayCurrVal = eval(`Math.${method}(${value})`); }
     else { this.displayCurrVal = 1 / eval(`Math.${method}(${value})`); }
-
     this.updateDisplay();
 }
 

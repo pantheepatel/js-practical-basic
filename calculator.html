@@ -6,7 +6,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
@@ -15,7 +14,6 @@
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/css/calculator.css">
-
 </head>
 
 <body class="" id="main">
@@ -27,18 +25,13 @@
                     data-bs-target="#offcanvas-history" aria-controls="offcanvasBottom"></i>
             </div>
 
-            <!-- FIXME: add history and memory for small screens -->
-            <!-- <i class="fa fa-clock" aria-hidden="true" class="d-block d-sm-none"></i> -->
             <!-- to show output -->
             <div class="" id="displayDiv">
-                <!-- FIXME: this is to show small text/like small history function, just for one expression -->
                 <input type="text" class="text-end" id="spanOutputHistory" value="0" disabled></input>
                 <input type="text" class="text-end" id="spanOutput" placeholder="0" disabled />
-                <!-- <span class="flex" id="spanOutput">0</span> -->
             </div>
             <!-- deg and f-e -->
             <div class="d-flex justify-content-start gap-5 my-2" id="fixedDegree">
-                <!-- <span class="span_btn" onclick="">DEG</span> -->
                 <input type="checkbox" class="btn-check" id="degree" value="degree">
                 <label class="btn" for="degree" id="degreeLable">RAD</label>
                 <span class="span_btn" onclick="" id="fixed" value="fixed">F-E</span>
@@ -67,7 +60,6 @@
                         <table class="align-middle">
                             <tr>
                                 <td>
-                                    <!-- <button class="" id="" value="changeButtonsIns">2nd</button> -->
                                     <input type="checkbox" class="btn-check" name="changeButtonsIns"
                                         id="changeButtonsIns">
                                     <label class="btn" for="changeButtonsIns">2nd</label>
@@ -84,7 +76,6 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <!-- <button class="" id="" value="changeButtonsHyp">hyp</button> -->
                                     <input type="checkbox" class="btn-check" name="changeButtonsHyp"
                                         id="changeButtonsHyp">
                                     <label class="btn" for="changeButtonsHyp">Hyp</label>
@@ -164,7 +155,7 @@
                             <button class="" id="mod" onclick="" value="%">mod</button>
                         </td>
                     </tr>
-                    <!-- TODO: brackets row 3 - rootX, (, ), n!, / -->
+                    <!-- row 3 - rootX, (, ), n!, / -->
                     <tr class="">
                         <td class="btnTd">
                             <button class="firstBtnTd" id="sqrtX" onclick="" value="sqrt"> &#8730;x</button>
@@ -278,14 +269,11 @@
                         type="button" role="tab" aria-controls="nav-memory" aria-selected="false">Memory</button>
                 </li>
             </ul>
-            <!-- FIXME: add delete icon for nav-tabs too -->
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade active show" id="nav-history" role="tabpanel"
                     aria-labelledby="nav-history-tab">
-                    <!-- <div class="history-div">Lorem ipsum dolor sit amet, consectetur</div> -->
                 </div>
                 <div class="tab-pane fade" id="nav-memory" role="tabpanel" aria-labelledby="nav-memory-tab">
-                    <!-- <div class="memory-div">Lorem ipsum dolor sit amet, consectetur</div> -->
                 </div>
             </div>
         </div>
@@ -296,7 +284,6 @@
                 <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvas-history"
                     aria-labelledby="offcanvasBottomLabel">
                     <div class="offcanvas-body">
-                        <!-- <div class="history-div">Lorem ipsum dolor sit amet, consectetur</div> -->
                     </div>
                     <div class="offcanvas-footer text-end">
                         <i class="fa fa-trash m-2" id="deleteHistory"></i>
@@ -308,7 +295,6 @@
                 <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvas-memory"
                     aria-labelledby="offcanvasBottomLabel">
                     <div class="offcanvas-body">
-                        <!-- <div class="memory-div">Lorem ipsum dolor sit amet, consectetur</div> -->
                     </div>
                     <div class="offcanvas-footer text-end">
                         <i class="fa fa-trash m-2" id="deleteMemory"></i>
@@ -319,17 +305,10 @@
     </div>
     <!-- custom js -->
     <script type="module" src="assets/js/app.js"></script>
-    <!-- <script type="module" src="assets/js/calculator.js"></script> -->
-    <!-- <script type="module" src="assets/js/storage.js"></script>
-    <script type="module" src="assets/js/error.js"></script>
-    <script type="module" src="assets/js/event.js"></script>
-    <script type="module" src="assets/js/operations.js"></script> -->
-
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
